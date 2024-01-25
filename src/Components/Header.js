@@ -20,14 +20,11 @@ const Header = ({ onCategoryChange }) => {
 
   return (
     <div className="header container-fluid">
-      <div className="row d-flex justify-content-between">
-        <div className="col-12 col-md-4">
+      <div className="row d-flex justify-content-between w-100 ">
+        <div className="col-12 col-md-4 justify-content-md-left justify-content-center">
           <img src={Logo} alt="Logo" className="logo" />
         </div>
-        <div className="col-12 col-md-8">
-          <div className="search-bar-container">
-            <SearchBar onSearch={handleSearch} />
-          </div>
+        <div className="col-12 col-md-4 justify-content-md-center justify-content-center">
           <div className="categories">
             <button
               className={selectedCategory === 'popular' ? 'active' : ''}
@@ -48,6 +45,12 @@ const Header = ({ onCategoryChange }) => {
               Science
             </button>
           </div>
+        </div>
+        <div className="col-12 col-md-4 justify-content-md-end justify-content-center">
+          <div className="search-bar-container">
+            <SearchBar onSearch={handleSearch} />
+          </div>
+          
         </div>
       </div>
     </div>

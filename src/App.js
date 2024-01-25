@@ -5,6 +5,7 @@ import Header from './Components/Header';
 import './Components/Header.css';
 import './App.css';
 import MainBody from './Components/MainBody';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState('popular');
