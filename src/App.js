@@ -1,25 +1,17 @@
-import logo from './logo.svg';
+// App.js
+
+import React from 'react';
+import Header from './Components/Header';
+import './Components/Header.css'; // Import your CSS file
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='redditApp'>
+      <Header />
+      {/* Your other components go here */}
     </div>
   );
-}
+};
 
 export default App;

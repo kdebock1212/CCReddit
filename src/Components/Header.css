@@ -1,0 +1,17 @@
+/* Header.css */
+
+.header {
+    background-color: lightgrey; /* Add your desired background color */
+    color: white; /* Add your desired text color */
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 50px; /* Set your logo width */
+    height: auto;
+  }
+  
