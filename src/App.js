@@ -9,15 +9,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState('popular');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
 
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
   return (
     <div className='redditApp'>
-      <Header onCategoryChange={handleCategoryChange} />
-      <MainBody selectedCategory={selectedCategory} />
+      <Header onCategoryChange={handleCategoryChange} onSearch={handleSearch} />
+      <MainBody selectedCategory={selectedCategory} searchTerm={searchTerm} />
     </div>
   );
 };

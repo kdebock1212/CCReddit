@@ -4,15 +4,17 @@ import React, { useState } from 'react';
 import Logo from '../Images/Reddit-Logo.wine.png';
 import SearchBar from './SearchBar';
 
-const Header = ({ onCategoryChange }) => {
+const Header = ({ onCategoryChange, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('popular');
 
   const handleSearch = (term) => {
     setSearchTerm(term);
-    // Your search functionality goes here
+    setSelectedCategory(term); // Update category based on search term
+    onCategoryChange(term); // Notify the parent component about the category change
+    onSearch(term); // Notify the parent component about the search term
   };
-
+  
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     onCategoryChange(category); // Notify the parent component about the category change

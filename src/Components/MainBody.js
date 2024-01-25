@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 import ImageFeature from './Features/ImageFeature';
 import TitleFeature from './Features/TitleFeature';
 import PostOwnerFeature from './Features/PostOwnerFeature';
-import './MainBody.css';
 import SubRedditFeature from './Features/SubReddit';
+import './MainBody.css';
 
-const MainBody = ({ selectedCategory }) => {
+const MainBody = ({ selectedCategory, searchTerm }) => {
   const [redditData, setRedditData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,18 +19,22 @@ const MainBody = ({ selectedCategory }) => {
       setError(null);
 
       try {
-        if (cachedResults && selectedCategory in cachedResults) {
-          setRedditData(cachedResults[selectedCategory]);
-        } else {
-          const response = await fetch(`https://www.reddit.com/r/${selectedCategory}.json?raw_json=1`);
-          
+        if (searchTerm) {
+          const response = await fetch(`https://www.reddit.com/r/${searchTerm}.json?raw_json=1`);
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
-
           const data = await response.json();
           setRedditData(data.data.children);
-
+        } else if (cachedResults && selectedCategory in cachedResults) {
+          setRedditData(cachedResults[selectedCategory]);
+        } else {
+          const response = await fetch(`https://www.reddit.com/r/${selectedCategory}.json?raw_json=1`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+          setRedditData(data.data.children);
           // Cache the successful query results
           setCachedResults((prevResults) => ({
             ...prevResults,
@@ -46,7 +50,7 @@ const MainBody = ({ selectedCategory }) => {
     };
 
     fetchData();
-  }, [selectedCategory, cachedResults]);
+  }, [selectedCategory, searchTerm, cachedResults]);
 
   if (isLoading) {
     return <p>Loading...</p>;
