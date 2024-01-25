@@ -1,16 +1,22 @@
 // App.js
 
-import React from 'react';
+import React, { useState } from 'react';  // Import useState
 import Header from './Components/Header';
-import './Components/Header.css'; // Import your CSS file
+import './Components/Header.css';
 import './App.css';
 import MainBody from './Components/MainBody';
 
 const App = () => {
+  const [selectedCategory, setSelectedCategory] = useState('popular');
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
   return (
     <div className='redditApp'>
-      <Header />
-      <MainBody className='card'/>
+      <Header onCategoryChange={handleCategoryChange} />
+      <MainBody selectedCategory={selectedCategory} />
     </div>
   );
 };
