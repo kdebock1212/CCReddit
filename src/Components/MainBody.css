@@ -1,0 +1,10 @@
+/* MainBody.css */
+  .RedditFeed{
+    flex-direction: column;
+
+  }
+
+    .RedditPost{
+    flex-direction: column;
+
+  }
