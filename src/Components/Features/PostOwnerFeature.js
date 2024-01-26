@@ -3,7 +3,7 @@
 import React from 'react';
 
 const PostOwnerFeature = ({ postOwner }) => {
-  return <p>{postOwner}</p>;
+  return <p  className='postOwner'>{postOwner}</p>;
 };
 
 export default PostOwnerFeature;

@@ -1,7 +1,8 @@
-// PostDetail.js
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import TitleFeature from './Features/TitleFeature';
+import ImageFeature from './Features/ImageFeature';
+import PostOwnerFeature from './Features/PostOwnerFeature';
 import CommentFeature from './Features/CommentFeature';
 
 const PostDetail = () => {
@@ -44,10 +45,25 @@ const PostDetail = () => {
     return <p>Loading...</p>;
   }
 
+  // Check if postDetails is defined before rendering features
+  if (!postDetails) {
+    return <p>No post details found</p>;
+  }
+
+  const { title, author, url_overridden_by_dest } = postDetails;
+
   return (
-    <div>
-      <h2>{postDetails.title}</h2>
-      <p>{postDetails.selftext}</p>
+    <div className='RedditPost'>
+      {/* Use TitleFeature */}
+      <TitleFeature title={title} />
+
+      {/* Use ImageFeature */}
+      <ImageFeature imageUrl={url_overridden_by_dest} />
+
+      {/* Use PostOwnerFeature */}
+      <PostOwnerFeature postOwner={author} />
+
+      {/* Use CommentFeature and pass the comments data */}
       <CommentFeature comments={comments} />
     </div>
   );
