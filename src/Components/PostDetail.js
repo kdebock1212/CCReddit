@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import CommentFeature from './Features/CommentFeature';
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -12,13 +13,23 @@ const PostDetail = () => {
   useEffect(() => {
     const fetchPostDetails = async () => {
       try {
-        const postResponse = await fetch(`https://www.reddit.com/api/info.json?id=t3_${postId}`);
+        const postResponse = await fetch(`http://localhost:8080/https://www.reddit.com/api/info.json?id=t3_${postId}`);
         const postData = await postResponse.json();
-        setPostDetails(postData.data.children[0].data);
+        const fetchedPostDetails = postData.data.children[0].data;
+        setPostDetails(fetchedPostDetails);
 
-        const commentsResponse = await fetch(`https://www.reddit.com/r/${postDetails.subreddit}/comments/${postId}.json`);
+        const commentsResponse = await fetch(`http://localhost:8080/https://www.reddit.com/r/${fetchedPostDetails.subreddit}/comments/${postId}.json`);
         const commentsData = await commentsResponse.json();
-        setComments(commentsData[1].data.children);
+
+        // Logging commentsData to the console
+        console.log('Comments JSON data:', commentsData);
+
+        // Extracting comments' bodies
+        const extractedComments = commentsData[1].data.children.map((comment) => ({
+          body: comment.data.body,
+        }));
+
+        setComments(extractedComments);
       } catch (error) {
         console.error('Error fetching post details:', error);
       } finally {
@@ -27,7 +38,7 @@ const PostDetail = () => {
     };
 
     fetchPostDetails();
-  }, [postId, postDetails.subreddit]);
+  }, [postId]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -37,12 +48,7 @@ const PostDetail = () => {
     <div>
       <h2>{postDetails.title}</h2>
       <p>{postDetails.selftext}</p>
-      <h3>Comments:</h3>
-      <ul>
-        {comments.map((comment) => (
-          <li key={comment.data.id}>{comment.data.body}</li>
-        ))}
-      </ul>
+      <CommentFeature comments={comments} />
     </div>
   );
 };

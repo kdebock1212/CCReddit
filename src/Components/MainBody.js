@@ -1,12 +1,7 @@
 // MainBody.js
 
 import React, { useState, useEffect } from 'react';
-import ImageFeature from './Features/ImageFeature';
-import TitleFeature from './Features/TitleFeature';
-import PostOwnerFeature from './Features/PostOwnerFeature';
-import SubRedditFeature from './Features/SubReddit';
 import './MainBody.css';
-import { Link } from 'react-router-dom';
 import PostContent from './PostContent';
 
 const MainBody = ({ selectedCategory, searchTerm }) => {
@@ -22,7 +17,11 @@ const MainBody = ({ selectedCategory, searchTerm }) => {
 
       try {
         if (searchTerm) {
-          const response = await fetch(`https://www.reddit.com/r/${searchTerm}.json?raw_json=1`);
+          const response = await fetch(`http://localhost:8080/https://www.reddit.com/r/${searchTerm}.json?raw_json=1`, {
+            headers: {
+              'User-Agent': 'CodecademyRedditApp/1.0.0 (by /u/xkatoclysm)',
+            },
+            });
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
@@ -31,7 +30,7 @@ const MainBody = ({ selectedCategory, searchTerm }) => {
         } else if (cachedResults && selectedCategory in cachedResults) {
           setRedditData(cachedResults[selectedCategory]);
         } else {
-          const response = await fetch(`https://www.reddit.com/r/${selectedCategory}.json?raw_json=1`);
+          const response = await fetch(`http://localhost:8080/https://www.reddit.com/r/${selectedCategory}.json?raw_json=1`);
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
