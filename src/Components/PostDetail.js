@@ -23,11 +23,12 @@ const PostDetail = () => {
         const commentsResponse = await fetch(`http://localhost:8080/https://www.reddit.com/r/${fetchedPostDetails.subreddit}/comments/${postId}.json`);
         const commentsData = await commentsResponse.json();
 
-        // Logging commentsData to the console
+        // Log the commentsData to the console
         console.log('Comments JSON data:', commentsData);
 
         // Extracting comments' bodies
         const extractedComments = commentsData[1].data.children.map((comment) => ({
+          author: comment.data.author, // Assuming the author property is available
           body: comment.data.body,
         }));
 
