@@ -6,6 +6,8 @@ import TitleFeature from './Features/TitleFeature';
 import PostOwnerFeature from './Features/PostOwnerFeature';
 import SubRedditFeature from './Features/SubReddit';
 import './MainBody.css';
+import { Link } from 'react-router-dom';
+import PostContent from './PostContent';
 
 const MainBody = ({ selectedCategory, searchTerm }) => {
   const [redditData, setRedditData] = useState([]);
@@ -62,14 +64,8 @@ const MainBody = ({ selectedCategory, searchTerm }) => {
 
   return (
     <div className='RedditFeed'>
-      {/* Render the Reddit data using feature components */}
       {redditData.map((post) => (
-        <div key={post.data.id} className='RedditPost'>
-          <SubRedditFeature subreddit={post.data.subreddit_name_prefixed} />
-          <TitleFeature title={post.data.title} />
-          <ImageFeature imageUrl={post.data.preview && post.data.preview.images[0].source.url} />
-          <PostOwnerFeature postOwner={post.data.author} />
-        </div>
+        <PostContent key={post.data.id} post={post} />
       ))}
     </div>
   );

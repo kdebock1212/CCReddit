@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Logo from '../Images/Reddit-Logo.wine.png';
 import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
 
 const Header = ({ onCategoryChange, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,7 +25,9 @@ const Header = ({ onCategoryChange, onSearch }) => {
     <div className="header container-fluid">
       <div className="row d-flex justify-content-between w-100 ">
         <div className="col-12 col-md-4 justify-content-md-left justify-content-center">
-          <img src={Logo} alt="Logo" className="logo" />
+          <Link to="/">
+            <img src={Logo} alt="Logo" className="logo" />
+          </Link>
         </div>
         <div className="col-12 col-md-4 justify-content-md-center justify-content-center">
           <div className="categories">
