@@ -1,13 +1,14 @@
 // CommentFeature.js
-
 import React from 'react';
 
-const CommentFeature = ({  }) => {
+const CommentFeature = ({ comments }) => {
   return (
     <div>
       <h3>Comments:</h3>
       <ul>
-        this is a comment
+        {comments.map((comment, index) => (
+          <li key={index}>{comment.body}</li>
+        ))}
       </ul>
     </div>
   );
