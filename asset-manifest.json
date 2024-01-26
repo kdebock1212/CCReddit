@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/CCReddit/static/css/main.e658fa84.css",
+    "main.js": "/CCReddit/static/js/main.390affb5.js",
+    "static/js/787.10cf512c.chunk.js": "/CCReddit/static/js/787.10cf512c.chunk.js",
+    "static/media/Reddit-Logo.wine.png": "/CCReddit/static/media/Reddit-Logo.wine.f6b607a8773c87b50e60.png",
+    "index.html": "/CCReddit/index.html",
+    "main.e658fa84.css.map": "/CCReddit/static/css/main.e658fa84.css.map",
+    "main.390affb5.js.map": "/CCReddit/static/js/main.390affb5.js.map",
+    "787.10cf512c.chunk.js.map": "/CCReddit/static/js/787.10cf512c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e658fa84.css",
+    "static/js/main.390affb5.js"
+  ]
+}
